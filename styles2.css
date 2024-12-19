@@ -1,0 +1,254 @@
+/* Reset CSS untuk menghilangkan margin dan padding default */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style untuk body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Style untuk header */
+.header {
+    background-color: #FFB800;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Style untuk logo */
+.logo img {
+    height: 40px;
+}
+
+/* Style untuk menu navigasi */
+.nav-menu a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+/* Style untuk tombol autentikasi */
+.auth-buttons button {
+    padding: 0.5rem 1.5rem;
+    margin-left: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #FF6B00;
+    color: white;
+    cursor: pointer;
+}
+
+/* Style untuk bagian hero */
+.hero {
+    margin-top: 64px; /* Tinggi header */
+    height: 600px;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('tubes image/background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 55px;
+    margin-bottom: 1rem;
+}
+
+/* Style untuk bagian pembelajaran */
+.learning-section {
+    padding: 4rem 2rem;
+}
+
+.learning-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 36px;
+}
+
+.learning-content {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Style untuk daftar rambu */
+.sign-list {
+    flex: 1;
+}
+
+.sign-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2.7rem;
+}
+
+
+.sign-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 1rem;
+}
+
+.sign-button {
+    background-color: #FFB800;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* Style untuk preview gambar */
+.sign-preview {
+    flex: 1;
+    background-color: #FFB800;
+    padding: 2.5rem;
+    border-radius: 20px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+}
+
+/* Style untuk bagian kuis */
+.quiz-section {
+    background-color: #FFB800;
+    padding: 4rem 2rem ;
+}
+
+.quiz-content {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.quiz-image {
+    flex: 1;
+}
+
+.quiz-image img {
+    width: 300px;
+    height: auto;
+}
+
+.quiz-text {
+    flex: 1;
+}
+
+.quiz-text h2 {
+    font-size: 36px;
+    margin-bottom: 1rem;
+}
+
+.arrow {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 2rem;
+}
+
+/* Style untuk bagian tentang kami */
+.about-section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 36px;
+    margin-bottom: 2rem;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.member img {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+}
+
+.member h3 {
+    margin-bottom: 0.5rem;
+}
+
+/* Style untuk footer */
+.footer {
+    background-color: #FFB800;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Media queries untuk responsivitas */
+@media (max-width: 1024px) {
+    .team-members {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .learning-content {
+        flex-direction: column;
+    }
+    
+    .quiz-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .arrow {
+        position: static;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-members {
+        grid-template-columns: 1fr;
+    }
+    
+    .header {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .nav-menu {
+        margin: 1rem 0;
+    }
+    
+    .auth-buttons {
+        display: flex;
+        gap: 1rem;
+    }
+}
+
