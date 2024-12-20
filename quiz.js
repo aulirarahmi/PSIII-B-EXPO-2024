@@ -41,4 +41,36 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("quizForm");
+    
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // Cegah reload halaman
+    
+            // Simpan jawaban benar (sesuai database)
+            const correctAnswers = {
+                q1: "A", // Ganti sesuai dengan kunci jawaban di database
+                q2: "B",
+                q3: "C",
+                q4: "D"
+            };
+    
+            // Ambil data dari form
+            const formData = new FormData(form);
+            let score = 0;
+            let totalQuestions = Object.keys(correctAnswers).length;
+    
+            // Bandingkan jawaban pengguna dengan jawaban benar
+            for (let [key, value] of formData.entries()) {
+                if (correctAnswers[key] === value) {
+                    score++;
+                }
+            }
+    
+            // Tampilkan pop-up alert dengan nilai
+            alert(`Nilai Anda: ${score}/${totalQuestions}`);
+        });
+    });
+    
 });
