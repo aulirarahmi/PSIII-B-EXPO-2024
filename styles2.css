@@ -24,6 +24,14 @@ body {
     z-index: 1000;
 }
 
+.profile-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-left: 1290px;
+}
+
 /* Style untuk logo */
 .logo img {
     height: 40px;
@@ -35,6 +43,25 @@ body {
     text-decoration: none;
     color: black;
     font-weight: 500;
+}
+
+.user-logout{
+    padding: 0.5rem 1.5rem;
+    margin-left: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #FF6B00;
+    color: white;
+    cursor: pointer;
+}
+.user-nav a {
+    padding: 0.5rem 1.5rem;
+    margin-left: 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #FF6B00;
+    color: white;
+    cursor: pointer;
 }
 
 /* Style untuk tombol autentikasi */
@@ -52,7 +79,7 @@ body {
 .hero {
     margin-top: 64px; /* Tinggi header */
     height: 600px;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('tubes image/background.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/background.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -251,4 +278,3 @@ body {
         gap: 1rem;
     }
 }
-

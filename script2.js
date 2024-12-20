@@ -60,4 +60,3 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Navigating to quiz page');
     });
 });
-
