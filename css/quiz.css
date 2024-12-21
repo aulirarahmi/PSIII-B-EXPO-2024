@@ -10,6 +10,18 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     min-height: 100vh;
+    padding-top: 170px;
+}
+
+.header {
+    background-color: #FFB800;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
 .profile-photo {
@@ -18,18 +30,7 @@ body {
     border-radius: 50%;
     object-fit: cover;
     position: absolute; /* Change to absolute for better positioning */
-    top: 10px; /* Adjust as needed */
-    left: 10px; /* Adjust as needed */
-}
-
-/* Navbar styles */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-    background-color: #FFB800;
-    margin-bottom: 30px;
+    right: 150px; /* Adjust as needed */
 }
 
 /* Style untuk logo */
@@ -37,20 +38,53 @@ body {
     height: 40px;
 }
 
+/* Style untuk menu navigasi */
+/* Atur gaya dasar untuk navigasi */
+/* Atur gaya dropdown */
+/* Gaya navigasi */
 .nav-menu {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    background-color: #ffb800;
+    gap: 10px; /* Add space between buttons */
+    justify-content: center; /* Center align if needed */    
+    padding: 10px 10px; /* Adjust button size */
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+
+.button {
+    text-decoration: none; /* Remove underline */
     padding: 10px 20px;
-    position: relative;
+    background-color: #ffa500;
+    color: rgb(255, 255, 255);
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px;
+    text-align: center;
+}
+.nav-menu :hover {
+    background-color: #FF4500; /* Change color on hover */
 }
 
 /* Dropdown container */
 /* Dropdown styling */
+
+.dropdown-toggle {
+    text-decoration: none; /* Remove underline */
+    padding: 10px 20px;
+    background-color: #ffa500;
+    color: rgb(255, 255, 255);
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
+}
+.dropdown :hover {
+    background-color: #ffa500; /* Change color on hover */
 }
 
 .dropdown-menu {
@@ -58,7 +92,7 @@ body {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
     z-index: 1;
     padding: 10px;
 }
@@ -83,14 +117,19 @@ body {
     cursor: pointer;
 }
 
+
 .user-logout{
-    padding: 0.5rem 1.5rem;
-    margin-left: 1rem;
+    gap: 10px; /* Add space between buttons */
+    justify-content: center; /* Center align if needed */    
+    padding: 10px 10px; /* Adjust button size */
     border: none;
     border-radius: 4px;
-    background-color: #FF6B00;
     color: white;
     cursor: pointer;
+    font-size: 16px;
+}
+.user-logout :hover {
+    background-color: #FF4500; /* Change color on hover */
 }
 .user-nav a {
     padding: 0.5rem 1.5rem;
@@ -103,16 +142,22 @@ body {
 }
 
 /* Style untuk tombol autentikasi */
-.auth-buttons button {
-    padding: 0.5rem 1.5rem;
-    margin-left: 1rem;
+.auth-buttons {
+    display: flex; /* Align buttons horizontally */
+    gap: 20px; /* Add space between buttons */
+    justify-content: center; /* Center align if needed */    
+    padding: 10px 20px; /* Adjust button size */
     border: none;
     border-radius: 4px;
-    background-color: #FF6B00;
+    background-color: #FF6B00; /* Button color */
     color: white;
     cursor: pointer;
+    font-size: 16px;
 }
 
+.auth-buttons :hover {
+    background-color: #FF4500; /* Change color on hover */
+}
 /* Main content styles */
 .container {
     max-width: 1200px;
@@ -180,14 +225,9 @@ input[type="radio"] {
         flex-direction: column;
         gap: 15px;
     }
-    .profile-photo {
-        margin-left: auto;
-        margin-right: auto;
-    }
     .nav-menu {
         margin: 15px 0;
     }
-
     .nav-buttons {
         display: flex;
         justify-content: center;
