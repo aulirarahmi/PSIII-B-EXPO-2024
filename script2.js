@@ -12,6 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
         'Rambu Petunjuk': 'guide-preview.png',
         'Rambu Perintah': 'mandatory-preview.png'
     };
+
+    document.querySelectorAll('.dropdown-toggle').forEach((dropdownToggle) => {
+        dropdownToggle.addEventListener('click', function (e) {
+            e.preventDefault(); // Mencegah link default
+            const dropdownMenu = this.nextElementSibling;
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+    
     
     // Menambahkan event listener untuk setiap tombol rambu
     signButtons.forEach(button => {

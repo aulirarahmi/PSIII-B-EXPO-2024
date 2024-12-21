@@ -38,12 +38,55 @@ body {
 }
 
 /* Style untuk menu navigasi */
-.nav-menu a {
-    margin: 0 1rem;
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
+/* Atur gaya dasar untuk navigasi */
+/* Atur gaya dropdown */
+/* Gaya navigasi */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background-color: #ffb800;
+    padding: 10px 20px;
+    position: relative;
 }
+
+/* Dropdown container */
+/* Dropdown styling */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    padding: 10px;
+}
+
+.dropdown-menu a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 8px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown:hover .dropdown-toggle {
+    color: #333;
+    cursor: pointer;
+}
+
 
 .user-logout{
     padding: 0.5rem 1.5rem;
@@ -79,7 +122,7 @@ body {
 .hero {
     margin-top: 64px; /* Tinggi header */
     height: 600px;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/background.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/background.jpg');
     background-size: cover;
     background-position: center;
     color: white;
