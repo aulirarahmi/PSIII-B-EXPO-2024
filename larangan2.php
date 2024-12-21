@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Periksa apakah pengguna sudah login, jika belum, arahkan ke halaman login
+$isLoggedIn = isset($_SESSION['user_id']);
+
+// Sekarang Anda dapat mengakses data pengguna dari session
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+} else {
+    $username = null; // Atur nilai default jika session belum ada
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +26,7 @@
     <nav class="navbar">
         <div class="logo">
             <a href="index2.html">
-                <img src="tubes image/CTK LOGO black.png" alt="Logo Traffic Knowledge">
+                <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
             </a>
         </div>
         
@@ -40,17 +54,17 @@
         <section class="grid-container">
             <div class="content-box">
                 <h3>Persimpangan tiga tipe T</h3>
-                <img src="tubes image/learningImage.png" alt="Gambar dari database">
+                <img src="images/learningImage.png" alt="Gambar dari database">
                 <p>deskripsi nya deskripsi nya deskripsi nya...</p>
             </div>
             <div class="content-box">
                 <h3>Ini untuk judul dari database</h3>
-                <img src="tubes image/learningImage.png" alt="Gambar dari database">
+                <img src="images/learningImage.png" alt="Gambar dari database">
                 <p>deskripsi nya deskripsi nya deskripsi nya...</p>
             </div>
             <div class="content-box">
                 <h3>Ini untuk judul dari database</h3>
-                <img src="tubes image/learningImage.png" alt="Gambar dari database">
+                <img src="images/learningImage.png" alt="Gambar dari database">
                 <p>deskripsi nya deskripsi nya deskripsi nya...</p>
             </div>
         </section>

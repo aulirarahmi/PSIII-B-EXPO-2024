@@ -20,7 +20,7 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Civic Traffic Knowledge-2</title>
     <!-- Menghubungkan dengan file CSS -->
-    <link rel="stylesheet" href="styles2.css">
+    <link rel="stylesheet" href="css/styles2.css">
 </head>
 <body>
     <!-- Header dengan navigasi -->
@@ -29,12 +29,20 @@ if (isset($_SESSION['username'])) {
         <div class="logo">
             <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
         </div>
-        <!-- Menu navigasi -->
-        <div class="nav-menu">
-            <a href="#learning">Learning</a>
-            <a href="#quiz">Quiz</a>
-            <a href="#about">About us</a>
+      <!-- Menu navigasi -->
+     <div class="nav-menu">
+    <div class="dropdown">
+        <a href="#learning" class="dropdown-toggle">Learning</a>
+        <div class="dropdown-menu">
+            <a href="rambu.php?tipe=peringatan">Rambu Peringatan</a>
+            <a href="rambu.php?tipe=larangan">Rambu Larangan</a>
+            <a href="rambu.php?tipe=petunjuk">Rambu Petunjuk</a>
+            <a href="rambu.php?tipe=perintah">Rambu Perintah</a>
         </div>
+    </div>
+    <a href="#quiz">Quiz</a>
+    <a href="#about">About us</a>
+</div>
         <!-- Tombol autentikasi -->
         <?php if ($isLoggedIn): ?>
                 <!-- Tampilkan foto profil jika sudah login -->
@@ -69,7 +77,7 @@ if (isset($_SESSION['username'])) {
             <div class="sign-list">  
                 <!-- rambu peringatan               -->
                 <div class="sign-item">
-                    <a href="peringatan2.html" style="display: contents;">
+                    <a href="rambu.php?tipe=peringatan" style="display: contents;">>
                         <img src="images/RambuPeringatan.png" alt="Rambu Peringatan" class="sign-icon">
                         <button class="sign-button">Rambu Peringatan</button>
                     </a>
@@ -77,15 +85,17 @@ if (isset($_SESSION['username'])) {
 
                 <!-- rambu larangan -->
                 <div class="sign-item">
-                    <a href="larangan2.html" style="display: contents;">
+
+                    <a href="rambu.php?tipe=Larangan" style="display: contents;">
                         <img src="images/RambuLarangan.png" alt="Rambu Larangan" class="sign-icon">
                         <button class="sign-button">Rambu Larangan</button>
                     </a>
+
                 </div>
 
                 <!-- rambu petunjuk -->
                 <div class="sign-item">
-                    <a href="petunjuk2.html" style="display: contents;">
+                     <a href="rambu.php?tipe=petunjuk" style="display: contents;">
                         <img src="images/RambuPetunjuk.png" alt="Rambu Petunjuk" class="sign-icon">
                         <button class="sign-button">Rambu Petunjuk</button>
                     </a>
@@ -93,7 +103,7 @@ if (isset($_SESSION['username'])) {
 
                 <!-- rambu perintah -->
                 <div class="sign-item">
-                    <a href="perintah2.html" style="display: contents;">
+                    <a href="rambu.php?tipe=perintah" style="display: contents;">
                         <img src="images/RambuPerintah.png" alt="Rambu perinta" class="sign-icon">
                         <button class="sign-button">Rambu Perintah</button>
                     </a>
