@@ -78,12 +78,9 @@ if (isset($_GET['tipe'])) {
     <?php endforeach; ?>
 </section>
 
-</section>
-
-
-    </main>
     <footer>
         <p>Created by @PSIII PABW B</p>
     </footer>
+    </main>
 </body>
 </html>

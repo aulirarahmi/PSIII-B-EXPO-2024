@@ -159,7 +159,12 @@ body {
     }
 }
 
-
+/* Footer styles */
+footer {
+    background-color: #FFB800;
+    text-align: center;
+    padding: 1rem;
+}
 
 /* Responsive styles */
 @media screen and (max-width: 768px) {
