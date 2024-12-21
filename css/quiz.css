@@ -221,17 +221,23 @@ input[type="radio"] {
 } */
 
 @media screen and (max-width: 768px) {
-    .navbar {
+   .navbar {
         flex-direction: column;
         gap: 15px;
     }
+
     .nav-menu {
         margin: 15px 0;
     }
+
     .nav-buttons {
         display: flex;
         justify-content: center;
         width: 100%;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
     }
 
 }

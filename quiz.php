@@ -56,7 +56,7 @@ if (isset($_SESSION['username'])) {
                 </div>
             <?php endif; ?>
         </div>
-    </div>
+
     
     <!-- Main Content -->
     <main class="container">
