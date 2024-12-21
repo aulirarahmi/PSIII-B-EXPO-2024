@@ -57,6 +57,12 @@ function displayContent() {
         container.appendChild(box);
     });
 }
-
+document.querySelectorAll('.dropdown-toggle').forEach((dropdownToggle) => {
+    dropdownToggle.addEventListener('click', function (e) {
+        e.preventDefault(); // Mencegah link default
+        const dropdownMenu = this.nextElementSibling;
+        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+    });
+});
 // Menjalankan fungsi displayContent saat halaman dimuat
 document.addEventListener('DOMContentLoaded', displayContent);

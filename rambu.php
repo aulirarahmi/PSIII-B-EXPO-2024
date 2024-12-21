@@ -44,13 +44,20 @@ if (isset($_GET['tipe'])) {
                 <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
             </a>
         </div>
-        
-        <!-- Menu navigasi -->
-        <div class="nav-menu">
-            <a href="#learning">Learning</a>
-            <a href="#quiz">Quiz</a>
-            <a href="#about">About us</a>
+<!-- Menu navigasi -->
+<div class="nav-menu">
+    <div class="dropdown">
+        <a href="#learning" class="dropdown-toggle">Learning</a>
+        <div class="dropdown-menu">
+            <a href="rambu.php?tipe=peringatan">Rambu Peringatan</a>
+            <a href="rambu.php?tipe=larangan">Rambu Larangan</a>
+            <a href="rambu.php?tipe=petunjuk">Rambu Petunjuk</a>
+            <a href="rambu.php?tipe=perintah">Rambu Perintah</a>
         </div>
+    </div>
+    <a href="quiz.php">Quiz</a>
+    <a href="#about">About us</a>
+</div>
         <!-- Tombol autentikasi -->
         <?php if ($isLoggedIn): ?>
                 <!-- Tampilkan foto profil jika sudah login -->
@@ -63,9 +70,7 @@ if (isset($_GET['tipe'])) {
                 <a href="login/login.php">Login</a>
                 <a href="login/login.php">Sign Up</a>
                 </div>
-            <?php endif; ?>
-
-            
+            <?php endif; ?>       
         </div>
     </nav>
     <section class="grid-container">

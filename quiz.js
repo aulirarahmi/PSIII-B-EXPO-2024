@@ -15,7 +15,14 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         // Tambahkan pertanyaan lain sesuai kebutuhan
     ];
-
+    document.querySelectorAll('.dropdown-toggle').forEach((dropdownToggle) => {
+        dropdownToggle.addEventListener('click', function (e) {
+            e.preventDefault(); // Mencegah link default
+            const dropdownMenu = this.nextElementSibling;
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+    });
+    
     // Fungsi untuk menangani klik tombol next
     nextButton.addEventListener('click', function() {
         // Periksa apakah ada jawaban yang dipilih

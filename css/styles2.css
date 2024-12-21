@@ -29,7 +29,9 @@ body {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    margin-left: 1290px;
+    position: absolute; /* Change to absolute for better positioning */
+    top: 20px; /* Adjust as needed */
+    right: 150px; /* Adjust as needed */
 }
 
 /* Style untuk logo */
@@ -108,7 +110,7 @@ body {
 }
 
 /* Style untuk tombol autentikasi */
-.auth-buttons button {
+.auth-buttons {
     padding: 0.5rem 1.5rem;
     margin-left: 1rem;
     border: none;

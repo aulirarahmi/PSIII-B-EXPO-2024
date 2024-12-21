@@ -40,7 +40,7 @@ if (isset($_SESSION['username'])) {
             <a href="rambu.php?tipe=perintah">Rambu Perintah</a>
         </div>
     </div>
-    <a href="#quiz">Quiz</a>
+    <a href="quiz.php">Quiz</a>
     <a href="#about">About us</a>
 </div>
         <!-- Tombol autentikasi -->
@@ -56,8 +56,6 @@ if (isset($_SESSION['username'])) {
                 <a href="login/login.php">Sign Up</a>
                 </div>
             <?php endif; ?>
-
-            
         </div>
     </div>
 
