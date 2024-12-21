@@ -15,17 +15,14 @@ if (isset($_SESSION['username'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Pengaturan dasar dokumen -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Civic Traffic Knowledge-2</title>
     <!-- Menghubungkan dengan file CSS -->
-    <link rel="stylesheet" href="css/styles2.css">
+    <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-    <!-- Header dengan navigasi -->
     <div class="header">
-        <!-- Logo website -->
         <div class="logo">
             <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
         </div>
@@ -59,7 +56,7 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
 
-    <!-- Bagian hero dengan background -->
+    <!-- Bagian hero -->
     <div class="hero">
         <div class="hero-content">
             <h1>Civic Traffic Knowledge</h1>
@@ -67,13 +64,13 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
 
-    <!-- Bagian pembelajaran -->
+    <!-- Bagian Learning -->
     <div class="learning-section" id="learning">
         <h2>Learning</h2>
         <div class="learning-content">
             <!-- Daftar jenis rambu -->
             <div class="sign-list">  
-                <!-- rambu peringatan               -->
+                <!-- rambu peringatan -->
                 <div class="sign-item">
                     <a href="rambu.php?tipe=peringatan" style="display: contents;">>
                         <img src="images/RambuPeringatan.png" alt="Rambu Peringatan" class="sign-icon">
@@ -115,7 +112,7 @@ if (isset($_SESSION['username'])) {
         </div>
     </div>
 
-    <!-- Bagian kuis -->
+    <!-- Bagian kuis preview-->
     <div class="quiz-section" id="quiz">
         <div class="quiz-content">
             <div class="quiz-image">
@@ -161,7 +158,6 @@ if (isset($_SESSION['username'])) {
         <p>create by @PSIII PABW B</p>
     </div>
 
-    <!-- Menghubungkan dengan file JavaScript -->
     <script src="script2.js"></script>
 </body>
 </html>
