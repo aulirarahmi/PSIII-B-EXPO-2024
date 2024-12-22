@@ -38,11 +38,13 @@ if (isset($_GET['tipe'])) {
 <body>
     <main>
             <!-- Navbar -->
-        <div class="header">
-        <div class="logo">
-            <a href="index.php">
-            <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
-        </div>
+            <div class="header">
+            <div class="logo">
+    <a href="index.php">
+        <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
+    </a>
+</div>
+
       <!-- Menu navigasi -->
      <div class="nav-menu">
     <div class="dropdown">
@@ -66,12 +68,12 @@ if (isset($_GET['tipe'])) {
                 </div>
             <?php else: ?>
                 <div class="auth-buttons">
-                <a href="login/login.php">Login</a>
+                <a href="login/login.php" class="button">Login</a>
                 </div>
             <?php endif; ?>
         </div>
     </div>
-
+    
     <section class="grid-container">
     <?php foreach ($rambu_data as $rambu): ?>
     <div class="rambu-item">

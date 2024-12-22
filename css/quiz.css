@@ -18,6 +18,7 @@ body {
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: fixed;
     width: 100%;
     top: 0;
@@ -35,7 +36,13 @@ body {
 
 /* Style untuk logo */
 .logo img {
-    height: 40px;
+    width: 150px; /* Atur ukuran logo */
+    height: auto;
+    display: block;
+}
+
+.logo a {
+    text-decoration: none; /* Hilangkan garis bawah */
 }
 
 /* Style untuk menu navigasi */
@@ -48,6 +55,7 @@ body {
     padding: 10px 10px; /* Adjust button size */
     border: none;
     border-radius: 4px;
+    background-color:#FFB800; /* Button color */
     color: #ffffff;
     cursor: pointer;
     font-size: 16px;
@@ -77,6 +85,7 @@ body {
     color: rgb(255, 255, 255);
     border-radius: 5px; /* Rounded corners */
     font-size: 16px;
+    text-align: center;
 }
 
 .dropdown {
@@ -124,32 +133,23 @@ body {
     padding: 10px 10px; /* Adjust button size */
     border: none;
     border-radius: 4px;
+    background-color:#FFB800; /* Button color */
     color: white;
     cursor: pointer;
     font-size: 16px;
 }
+
 .user-logout :hover {
     background-color: #FF4500; /* Change color on hover */
 }
-.user-nav a {
-    padding: 0.5rem 1.5rem;
-    margin-left: 1rem;
-    border: none;
-    border-radius: 4px;
-    background-color: #FF6B00;
-    color: white;
-    cursor: pointer;
-}
+
 
 /* Style untuk tombol autentikasi */
 .auth-buttons {
-    display: flex; /* Align buttons horizontally */
     gap: 20px; /* Add space between buttons */
     justify-content: center; /* Center align if needed */    
-    padding: 10px 20px; /* Adjust button size */
     border: none;
     border-radius: 4px;
-    background-color: #FF6B00; /* Button color */
     color: white;
     cursor: pointer;
     font-size: 16px;
@@ -158,6 +158,7 @@ body {
 .auth-buttons :hover {
     background-color: #FF4500; /* Change color on hover */
 }
+
 /* Main content styles */
 .container {
     max-width: 1200px;
@@ -202,6 +203,42 @@ body {
 input[type="radio"] {
     margin-right: 10px;
 }
+/* Gaya dasar tombol */
+.btn-submit {
+    background-color: #4CAF50; /* Warna hijau */
+    color: white; /* Warna teks */
+    border: none; /* Hilangkan border */
+    padding: 12px 24px; /* Padding untuk ukuran tombol */
+    text-align: center; /* Posisikan teks di tengah */
+    text-decoration: none; /* Hilangkan garis bawah */
+    display: inline-block; /* Untuk mengatur dimensi */
+    font-size: 16px; /* Ukuran font */
+    margin: 8px 2px; /* Margin untuk ruang sekitar tombol */
+    cursor: pointer; /* Ubah kursor menjadi pointer saat hover */
+    border-radius: 8px; /* Buat sudut tombol melengkung */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Efek transisi */
+}
+
+/* Efek hover */
+.btn-submit :hover {
+    background-color: #45a049; /* Warna hijau lebih gelap saat hover */
+    transform: scale(1.05); /* Sedikit perbesar tombol saat hover */
+}
+
+/* Efek klik (active) */
+.btn-submit :active {
+    transform: scale(0.95); /* Kecilkan tombol sedikit saat diklik */
+    background-color: #3e8e41; /* Warna lebih gelap saat diklik */
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .btn-submit {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
 
 .footer {
     background-color: #FFB800;

@@ -1,7 +1,98 @@
 <?php
 include '../includes/db.php';
-include 'authentication.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$loginMessage = '';
+$registerMessage = '';
+
+// Process Login
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    // Use prepared statement to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? OR username = ?");
+    $stmt->bind_param("ss", $email, $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user) {
+        // Use password_verify for hashed passwords
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['is_admin'] = $user['is_admin'];
+            
+            // Debug log
+            error_log("Login successful for user: " . $user['username'] . " with admin status: " . $user['is_admin']);
+            
+            // Redirect based on user type
+            if ($user['is_admin'] == 1) {
+                header("Location: ../admin/dashboard.php");
+                exit();
+            } else {
+                header("Location: ../index.php");
+                exit();
+            }
+        } else {
+            $loginMessage = "Invalid password";
+        }
+    } else {
+        $loginMessage = "User not found";
+    }
+}
+
+
+// Process Registration
+if (isset($_POST['register'])) {
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
+
+    if ($password !== $confirmPassword) {
+        $registerMessage = "Passwords do not match";
+    } else {
+        // Check if username or email already exists
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? OR email = ?");
+        $stmt->bind_param("ss", $username, $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $registerMessage = "Username or email already exists";
+        } else {
+            // Hash password for security
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+            
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $username, $email, $hashedPassword);
+            
+            if ($stmt->execute()) {
+                $loginMessage = "Registration successful! Please login.";
+            } else {
+                $registerMessage = "Registration failed. Please try again.";
+            }
+        }
+    }
+}
+
+// If user is already logged in and is admin, redirect to admin dashboard
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+    header("Location: ../admin/admin_dashboard.php");
+    exit();
+} elseif (isset($_SESSION['user_id'])) {
+    header("Location: ../index.php");
+    exit();
+}
 ?>
+
+<!DOCTYPE html>
+<!-- Rest of your HTML remains the same -->
 
 <!DOCTYPE html>
 <html lang="en">

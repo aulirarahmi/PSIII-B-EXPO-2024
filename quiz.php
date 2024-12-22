@@ -1,17 +1,61 @@
 <?php
 session_start();
 include 'includes/db.php';
-// Periksa apakah pengguna sudah login, jika belum, arahkan ke halaman login
+
+// Check if user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
 
-// Sekarang Anda dapat mengakses data pengguna dari session
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-} else {
-    $username = null; // Atur nilai default jika session belum ada
+// Access user data from session
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+
+// Initialize variables for score and total questions
+$score = 0;
+$totalQuestions = 0;
+
+// Check if questions are already in session
+if (!isset($_SESSION['questions'])) {
+    // Fetch 20 random questions from the database and store in session
+    $query = $pdo->query("SELECT * FROM questions ORDER BY RAND() LIMIT 20");
+    $_SESSION['questions'] = $query->fetchAll();
+}
+
+$questions = $_SESSION['questions']; // Load questions from session
+
+// Handle quiz submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    foreach ($questions as $question) {
+        // Increment total questions count
+        $totalQuestions++;
+
+        // Check if the answer is correct
+        if (isset($_POST['q' . $question['id']]) && $_POST['q' . $question['id']] === $question['correct_answer']) {
+            $score++;
+        }
+    }
+
+    // Calculate percentage score
+    $percentageScore = ($score / $totalQuestions) * 100;
+
+    // Store score in session to display after redirect
+    $_SESSION['score'] = $score;
+    $_SESSION['totalQuestions'] = $totalQuestions;
+    $_SESSION['percentageScore'] = $percentageScore;
+
+    // Redirect to avoid form resubmission
+    header("Location: quiz.php");
+    exit();
+}
+
+// Display score if available in session
+if (isset($_SESSION['score'])) {
+    $score = $_SESSION['score'];
+    $totalQuestions = $_SESSION['totalQuestions'];
+    $percentageScore = $_SESSION['percentageScore'];
+
+    // Clear score from session after displaying (optional)
+    unset($_SESSION['score'], $_SESSION['totalQuestions'], $_SESSION['percentageScore']);
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,13 +66,15 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="css/quiz.css">
 </head>
 <body>
-<main>
+    <main>
             <!-- Navbar -->
-        <div class="header">
-        <div class="logo">
-            <a href="index.php">
-            <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
-        </div>
+            <div class="header">
+            <div class="logo">
+    <a href="index.php">
+        <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
+    </a>
+</div>
+
       <!-- Menu navigasi -->
      <div class="nav-menu">
     <div class="dropdown">
@@ -52,57 +98,53 @@ if (isset($_SESSION['username'])) {
                 </div>
             <?php else: ?>
                 <div class="auth-buttons">
-                <a href="login/login.php">Login</a>
+                <a href="login/login.php" class="button">Login</a>
                 </div>
             <?php endif; ?>
         </div>
-
-    
+    </div>
     <!-- Main Content -->
     <main class="container">
-        <h1>QUIZ, NANTI DI DESAIN</h1>
-            <div class="quiz-container">
-            <?php
-$query = $pdo->query("SELECT * FROM questions");
-$questions = $query->fetchAll();
+        <?php if ($score > 0): ?>
+            <!-- Display Score -->
+            <h2>Your Score: <?= htmlspecialchars($score); ?> out of <?= htmlspecialchars($totalQuestions); ?> (<?= htmlspecialchars(round($percentageScore, 2)); ?>%)</h2>
+        <?php endif; ?>
 
-foreach ($questions as $index => $question) {
-    echo '<div class="question">';
-    echo '<h3>' . ($index + 1) . '. ' . htmlspecialchars($question['question_text']) . '</h3>';
-    echo '<div class="options">';
-    echo '<label class="option">';
-    echo '<input type="radio" name="q' . $question['id'] . '" value="A">';
-    echo 'A. ' . htmlspecialchars($question['option_a']);
-    echo '</label>';
-    echo '<label class="option">';
-    echo '<input type="radio" name="q' . $question['id'] . '" value="B">';
-    echo 'B. ' . htmlspecialchars($question['option_b']);
-    echo '</label>';
-    echo '<label class="option">';
-    echo '<input type="radio" name="q' . $question['id'] . '" value="C">';
-    echo 'C. ' . htmlspecialchars($question['option_c']);
-    echo '</label>';
-    echo '<label class="option">';
-    echo '<input type="radio" name="q' . $question['id'] . '" value="D">';
-    echo 'D. ' . htmlspecialchars($question['option_d']);
-    echo '</label>';
-    echo '</div>';
-    echo '</div>';
-}
-?>
-
-<form id="quizForm" method="POST">
-    <!-- Pertanyaan dan opsi radio -->
-    <button type="submit">Submit Jawaban</button>
-</form>
-
+        <!-- Display Questions -->
+        <h1>Selamat Mengerjakan</h1>
+        <form id="quizForm" method="POST">
+            <?php foreach ($questions as $index => $question): ?>
+                <div class="question">
+                    <h3><?= ($index + 1) . '. ' . htmlspecialchars($question['question_text']); ?></h3>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="<?= 'q' . htmlspecialchars($question['id']); ?>" value="A">
+                            A. <?= htmlspecialchars($question['option_a']); ?>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="<?= 'q' . htmlspecialchars($question['id']); ?>" value="B">
+                            B. <?= htmlspecialchars($question['option_b']); ?>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="<?= 'q' . htmlspecialchars($question['id']); ?>" value="C">
+                            C. <?= htmlspecialchars($question['option_c']); ?>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="<?= 'q' . htmlspecialchars($question['id']); ?>" value="D">
+                            D. <?= htmlspecialchars($question['option_d']); ?>
+                        </label>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <button type="submit" class="btn-submit">Submit Jawaban</button>
+        </form>
     </main>
 
     <!-- Footer -->
-    <div class="footer">
-        <p>create by @PSIII PABW B</p>
+    <div class='footer'>
+        <p>Created by @PSIII PABW B</p>
     </div>
 
-    <script src="quiz.js"></script>
 </body>
 </html>
+

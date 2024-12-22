@@ -1,14 +1,23 @@
 <?php
 session_start();
 
-// Periksa apakah pengguna sudah login, jika belum, arahkan ke halaman login
 $isLoggedIn = isset($_SESSION['user_id']);
-
-// Sekarang Anda dapat mengakses data pengguna dari session
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-} else {
-    $username = null; // Atur nilai default jika session belum ada
+function loginUser($username, $password, $conn) {
+    $stmt = $conn->prepare("SELECT id, username, password, is_admin FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($row = $result->fetch_assoc()) {
+        // For already hashed passwords in database
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['user_id'] = $row['id'];
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['is_admin'] = $row['is_admin'];
+            return true;
+        }
+    }
+    return false;
 }
 ?>
 
@@ -22,10 +31,15 @@ if (isset($_SESSION['username'])) {
     <link rel="stylesheet" href="css/styles2.css">
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
-        </div>
+    <main>
+            <!-- Navbar -->
+            <div class="header">
+            <div class="logo">
+    <a href="index.php">
+        <img src="images/CTK LOGO black.png" alt="Logo Traffic Knowledge">
+    </a>
+</div>
+
       <!-- Menu navigasi -->
      <div class="nav-menu">
     <div class="dropdown">
@@ -49,7 +63,7 @@ if (isset($_SESSION['username'])) {
                 </div>
             <?php else: ?>
                 <div class="auth-buttons">
-                <a href="login/login.php">Login</a>
+                <a href="login/login.php" class="button">Login</a>
                 </div>
             <?php endif; ?>
         </div>

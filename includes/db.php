@@ -1,4 +1,9 @@
 <?php
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tubes";
 // db_connect.php
 $hostname = "localhost";
 $username = "root";  // sesuaikan dengan username database Anda
@@ -13,8 +18,31 @@ try {
     die("Error: " . $e->getMessage());
 }
 
-if ($db->connect_error) {
-    echo "koneksi database rusak";
+
+// db.php
+
+// Only define if not already defined
+if (!function_exists('checkAdminAccess')) {
+    function checkAdminAccess() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if (!isset($_SESSION['is_admin']) || $_SESSION['is_admin'] != 1) {
+            header("Location: login.php");
+            exit();
+        }
+    }
 }
 
+
+
+try {
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        throw new Exception("Connection failed: " . $conn->connect_error);
+    }
+} catch (Exception $e) {
+    die("Database connection error: " . $e->getMessage());
+}
 ?>
