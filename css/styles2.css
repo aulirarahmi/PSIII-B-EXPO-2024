@@ -29,7 +29,8 @@ body {
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
-    margin-left: 1290px;
+    position: absolute; /* Change to absolute for better positioning */
+    right: 150px; /* Adjust as needed */
 }
 
 /* Style untuk logo */
@@ -42,19 +43,50 @@ body {
 /* Atur gaya dropdown */
 /* Gaya navigasi */
 .nav-menu {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    background-color: #ffb800;
+    gap: 10px; /* Add space between buttons */
+    justify-content: center; /* Center align if needed */    
+    padding: 10px 10px; /* Adjust button size */
+    border: none;
+    border-radius: 4px;
+    background-color:#FFB800; /* Button color */
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+
+.button {
+    text-decoration: none; /* Remove underline */
     padding: 10px 20px;
-    position: relative;
+    background-color: #ffa500;
+    color: rgb(255, 255, 255);
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px;
+    text-align: center;
+}
+.nav-menu :hover {
+    background-color: #FF4500; /* Change color on hover */
 }
 
 /* Dropdown container */
 /* Dropdown styling */
+
+.dropdown-toggle {
+    text-decoration: none; /* Remove underline */
+    padding: 10px 20px;
+    background-color: #ffa500;
+    color: rgb(255, 255, 255);
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px;
+    text-align: center;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
+}
+.dropdown :hover {
+    background-color: #ffa500; /* Change color on hover */
 }
 
 .dropdown-menu {
@@ -62,7 +94,7 @@ body {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
     z-index: 1;
     padding: 10px;
 }
@@ -89,13 +121,18 @@ body {
 
 
 .user-logout{
-    padding: 0.5rem 1.5rem;
-    margin-left: 1rem;
+    gap: 10px; /* Add space between buttons */
+    justify-content: center; /* Center align if needed */    
+    padding: 10px 10px; /* Adjust button size */
     border: none;
     border-radius: 4px;
-    background-color: #FF6B00;
+    background-color:#FFB800; /* Button color */
     color: white;
     cursor: pointer;
+    font-size: 16px;
+}
+.user-logout :hover {
+    background-color: #FF4500; /* Change color on hover */
 }
 .user-nav a {
     padding: 0.5rem 1.5rem;
@@ -108,14 +145,21 @@ body {
 }
 
 /* Style untuk tombol autentikasi */
-.auth-buttons button {
-    padding: 0.5rem 1.5rem;
-    margin-left: 1rem;
+.auth-buttons {
+    display: flex; /* Align buttons horizontally */
+    gap: 20px; /* Add space between buttons */
+    justify-content: center; /* Center align if needed */    
+    padding: 10px 20px; /* Adjust button size */
     border: none;
     border-radius: 4px;
-    background-color: #FF6B00;
+    background-color: #FF6B00; /* Button color */
     color: white;
     cursor: pointer;
+    font-size: 16px;
+}
+
+.auth-buttons :hover {
+    background-color: #FF4500; /* Change color on hover */
 }
 
 /* Style untuk bagian hero */

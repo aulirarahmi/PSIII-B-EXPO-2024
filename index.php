@@ -37,24 +37,21 @@ if (isset($_SESSION['username'])) {
             <a href="rambu.php?tipe=perintah">Rambu Perintah</a>
         </div>
     </div>
-    <a href="#quiz">Quiz</a>
-    <a href="#about">About us</a>
+    <a href="quiz.php" class="button">Quiz</a>
+    <a href="#about" class="button">About us</a>
 </div>
         <!-- Tombol autentikasi -->
         <?php if ($isLoggedIn): ?>
                 <!-- Tampilkan foto profil jika sudah login -->
                 <img src="images/profile.jpg" alt="Foto Profil" class="profile-photo">
                 <div class="user-logout">
-                <a href="logout.php">Logout</a>
+                <a href="logout.php" class="button">Logout</a>
                 </div>
             <?php else: ?>
                 <div class="auth-buttons">
                 <a href="login/login.php">Login</a>
-                <a href="login/login.php">Sign Up</a>
                 </div>
             <?php endif; ?>
-
-            
         </div>
     </div>
 
