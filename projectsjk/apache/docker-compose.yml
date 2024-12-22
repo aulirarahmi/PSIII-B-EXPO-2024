@@ -1,0 +1,15 @@
+# @format
+
+services:
+  web:
+    image: apache_image
+    container_name: webserver
+    ports:
+      - "80:80"
+    volumes:
+      - C:\Users\user\OneDrive\Documents\INFORMATIKA\INFORMATIKA SMT 3\SJK SMT3\projectsjk/webfolder:/var/www/html
+    networks:
+      - appsjk
+networks:
+  appsjk:
+    external: true
