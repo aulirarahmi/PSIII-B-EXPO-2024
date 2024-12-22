@@ -10,61 +10,94 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Handle file upload
                 $target_dir = "../images/";
                 $target_file = $target_dir . basename($_FILES["image"]["name"]);
-                
+
                 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
                     // Prepare and execute insert statement
                     $stmt = $conn->prepare("INSERT INTO rambu (nama_rambu, tipe_rambu, image, deskripsi) VALUES (?, ?, ?, ?)");
                     $stmt->bind_param("ssss", $_POST['nama_rambu'], $_POST['tipe_rambu'], $_FILES["image"]["name"], $_POST['deskripsi']);
                     $stmt->execute();
-                    
+
                     // Redirect after successful insertion
                     header("Location: manage_rambu.php?status=success");
                     exit(); // Important to stop script execution after redirection
                 } else {
-                    // Handle upload error
                     echo "Error uploading file.";
                 }
                 break;
-                
+
             case 'edit':
                 // Check if an image is uploaded
-    if (!empty($_FILES["image"]["name"])) {
-        // Handle file upload if a new image is provided
-        $target_dir = "../images/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
-        
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            // Update statement with new image
-            $stmt = $conn->prepare("UPDATE rambu SET nama_rambu=?, tipe_rambu=?, image=?, deskripsi=? WHERE id=?");
-            $stmt->bind_param("ssssi", $_POST['nama_rambu'], $_POST['tipe_rambu'], $_FILES["image"]["name"], $_POST['deskripsi'], $_POST['id']);
-        } else {
-            echo "Error uploading file.";
-        }
-    } else {
-        // Update statement without changing the image
-        $stmt = $conn->prepare("UPDATE rambu SET nama_rambu=?, tipe_rambu=?, deskripsi=? WHERE id=?");
-        $stmt->bind_param("sssi", $_POST['nama_rambu'], $_POST['tipe_rambu'], $_POST['deskripsi'], $_POST['id']);
-    }
-    
-    if ($stmt->execute()) {
-        header("Location: manage_rambu.php?status=updated");
-        exit();
-    }
-    break;
-                
-            case 'delete':
-                      $stmt = $conn->prepare("DELETE FROM rambu WHERE id=?");
-                $stmt->bind_param("i", $_POST['id']);
-                $stmt->execute();
-                break;
-            
-    }
-}
-}
+                if (!empty($_FILES["image"]["name"])) {
+                    // Handle file upload if a new image is provided
+                    $target_dir = "../images/";
+                    $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
-// Get all rambu
-$rambu = $conn->query("SELECT * FROM rambu ORDER BY id DESC");
-?>
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                        // Update statement with new image
+                        $stmt = $conn->prepare("UPDATE rambu SET nama_rambu=?, tipe_rambu=?, image=?, deskripsi=? WHERE id=?");
+                        $stmt->bind_param("ssssi", $_POST['nama_rambu'], $_POST['tipe_rambu'], $_FILES["image"]["name"], $_POST['deskripsi'], $_POST['id']);
+                    } else {
+                        echo "Error uploading file.";
+                    }
+                } else {
+                    // Update statement without changing the image
+                    $stmt = $conn->prepare("UPDATE rambu SET nama_rambu=?, tipe_rambu=?, deskripsi=? WHERE id=?");
+                    $stmt->bind_param("sssi", $_POST['nama_rambu'], $_POST['tipe_rambu'], $_POST['deskripsi'], $_POST['id']);
+                }
+
+                if ($stmt->execute()) {
+                    header("Location: manage_rambu.php?status=updated");
+                    exit();
+                }
+                break;
+
+            case 'delete':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    if (isset($_POST['action']) && $_POST['action'] === 'delete') {
+                        // Fetch the image filename from the database
+                        $stmt = $conn->prepare("SELECT image FROM rambu WHERE id = ?");
+                        $stmt->bind_param("i", $_POST['id']);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+                
+                        if ($result->num_rows > 0) {
+                            $row = $result->fetch_assoc();
+                            $image_filename = $row['image'];
+                            $image_path = "../images/" . $image_filename;
+                
+                            // Attempt to delete the image file
+                            if (file_exists($image_path)) {
+                                if (unlink($image_path)) {
+                                    echo "File deleted successfully.";
+                                } else {
+                                    echo "Failed to delete file.";
+                                }
+                            } else {
+                                echo "File does not exist.";
+                            }
+                
+                            // Delete the rambu from the database
+                            $stmt = $conn->prepare("DELETE FROM rambu WHERE id = ?");
+                            $stmt->bind_param("i", $_POST['id']);
+                            if ($stmt->execute()) {
+                                echo "Rambu deleted successfully.";
+                                header("Location: manage_rambu.php?status=deleted");
+                                exit();
+                            } else {
+                                echo "Failed to delete rambu.";
+                            }
+                        } else {
+                            echo "Rambu not found.";
+                        }
+                    }
+                }
+            }
+        }
+    }
+                // Get all rambu
+                $rambu = $conn->query("SELECT * FROM rambu ORDER BY id DESC");
+                ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
