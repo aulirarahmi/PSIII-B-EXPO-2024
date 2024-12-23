@@ -2,11 +2,20 @@
 session_start();
 include 'includes/db.php';
 
-// Check if user is logged in
 $isLoggedIn = isset($_SESSION['user_id']);
 
-// Access user data from session
-$username = isset($_SESSION['username']) ? $_SESSION['username'] : null;
+require_once 'includes/db.php';
+
+$user_id = $_SESSION['user_id'];
+$success_message = '';
+$error_message = '';
+
+// Fetch current user data
+$stmt = $conn->prepare("SELECT username, email, profile_photo FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
 
 // Initialize variables for score and total questions
 $score = 0;
@@ -92,10 +101,14 @@ if (isset($_SESSION['score'])) {
         <!-- Tombol autentikasi -->
         <?php if ($isLoggedIn): ?>
                 <!-- Tampilkan foto profil jika sudah login -->
-                <img src="images/default_avatar.jpg" alt="Foto Profil" class="profile-photo">
+                <div class="profile-container">
+            <a href="profile.php">
+            <img src="<?php echo htmlspecialchars($user['profile_photo']); ?>" alt="Foto Profil" class="profile-photo">
+            </a>
                 <div class="user-logout">
                 <a href="logout.php" class="button">Logout</a>
                 </div>
+            </div>
             <?php else: ?>
                 <div class="auth-buttons">
                 <a href="login/login.php" class="button">Login</a>

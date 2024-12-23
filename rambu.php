@@ -2,15 +2,20 @@
 session_start();
 include 'includes/db.php';
 
-// Periksa apakah pengguna sudah login, jika belum, arahkan ke halaman login
 $isLoggedIn = isset($_SESSION['user_id']);
 
-// Sekarang Anda dapat mengakses data pengguna dari session
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-} else {
-    $username = null; // Atur nilai default jika session belum ada
-}
+require_once 'includes/db.php';
+
+$user_id = $_SESSION['user_id'];
+$success_message = '';
+$error_message = '';
+
+// Fetch current user data
+$stmt = $conn->prepare("SELECT username, email, profile_photo FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
 
 // Pastikan tipe rambu diterima sebagai parameter GET
 if (isset($_GET['tipe'])) {
@@ -62,10 +67,14 @@ if (isset($_GET['tipe'])) {
         <!-- Tombol autentikasi -->
         <?php if ($isLoggedIn): ?>
                 <!-- Tampilkan foto profil jika sudah login -->
-                <img src="images/profile.jpg" alt="Foto Profil" class="profile-photo">
+                <div class="profile-container">
+            <a href="profile.php">
+            <img src="<?php echo htmlspecialchars($user['profile_photo']); ?>" alt="Foto Profil" class="profile-photo">
+            </a>
                 <div class="user-logout">
                 <a href="logout.php" class="button">Logout</a>
                 </div>
+            </div>
             <?php else: ?>
                 <div class="auth-buttons">
                 <a href="login/login.php" class="button">Login</a>

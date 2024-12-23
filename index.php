@@ -3,30 +3,20 @@ session_start();
 include 'includes/db.php';
 
 $isLoggedIn = isset($_SESSION['user_id']);
-$profileImage = isset($_SESSION['profile_image']) ? 
-$_SESSION['profile_image'] : 'default-profile.jpg';
-$imagePath = "images/" . $profileImage;
-if (!file_exists($imagePath)) {
-    $imagePath = "images/default_avatar.jpg"; // Fallback to default image
-}
-function loginUser($username, $password, $conn) {
-    $stmt = $conn->prepare("SELECT username, email, profile_photo FROM users WHERE id = ?");
-    $stmt->bind_param("i", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-    
-    if ($row = $result->fetch_assoc()) {
-        // For already hashed passwords in database
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['username'] = $row['username'];
-            $_SESSION['is_admin'] = $row['is_admin'];
-            return true;
-        }
-    }
-    return false;
-}
+
+require_once 'includes/db.php';
+
+$user_id = $_SESSION['user_id'];
+$success_message = '';
+$error_message = '';
+
+// Fetch current user data
+$stmt = $conn->prepare("SELECT username, email, profile_photo FROM users WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>
@@ -65,11 +55,14 @@ function loginUser($username, $password, $conn) {
         <!-- Tombol autentikasi -->
         <?php if ($isLoggedIn): ?>
                 <!-- Tampilkan foto profil jika sudah login -->
-                <img src="<?php echo htmlspecialchars($user['profile_photo']); ?>" 
-             alt="Foto Profil" class="profile-photo">
+                <div class="profile-container">
+            <a href="profile.php">
+            <img src="<?php echo htmlspecialchars($user['profile_photo']); ?>" alt="Foto Profil" class="profile-photo">
+            </a>
                 <div class="user-logout">
                 <a href="logout.php" class="button">Logout</a>
                 </div>
+            </div>
             <?php else: ?>
                 <div class="auth-buttons">
                 <a href="login/login.php" class="button">Login</a>
@@ -94,7 +87,7 @@ function loginUser($username, $password, $conn) {
             <div class="sign-list">  
                 <!-- rambu peringatan -->
                 <div class="sign-item">
-                    <a href="rambu.php?tipe=peringatan" style="display: contents;">>
+                    <a href="rambu.php?tipe=peringatan" style="display: contents;">
                         <img src="images/RambuPeringatan.png" alt="Rambu Peringatan" class="sign-icon">
                         <button class="sign-button">Rambu Peringatan</button>
                     </a>
