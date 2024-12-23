@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2024 at 08:44 PM
+-- Generation Time: Dec 23, 2024 at 04:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -141,6 +141,7 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `profile_photo` varchar(255) DEFAULT 'images/default_avatar.jpg',
   `is_admin` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -149,12 +150,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `is_admin`, `created_at`) VALUES
-(1, 'admin', 'admin@gmail.com\r\n', 'admin', 1, '2024-12-19 14:14:12'),
-(2, 'user', '', 'user\r\n', 0, '2024-12-19 14:14:12'),
-(3, 'sulthan', 's@gmail.com', '$2y$10$2R4GAVFM1fsIpLcL4nqkAu9x8y3m/cZjjm6nwkiXdOJauqwf16YBW', 0, '2024-12-19 18:24:46'),
-(4, 'a', 'a@a', '$2y$10$LAImR3LCdTJ6.nqr3GgJLOnID1DTcUIiKPaXpkWfWGBf33aY7aCU6', 1, '2024-12-21 10:34:04'),
-(5, 'lingga', 'lingga@gmail.com', '$2y$10$8lY.LLbKwhkqNYZR0np31ud109avNRVyskhTyROWDFWeu.tM643/2', 0, '2024-12-22 13:30:16');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile_photo`, `is_admin`, `created_at`) VALUES
+(3, 'sulthan', 's@gmail.com', '$2y$10$2R4GAVFM1fsIpLcL4nqkAu9x8y3m/cZjjm6nwkiXdOJauqwf16YBW', 'images/6768b17b65814.jpg', 0, '2024-12-19 18:24:46'),
+(4, 'a', 'a@a', '$2y$10$LAImR3LCdTJ6.nqr3GgJLOnID1DTcUIiKPaXpkWfWGBf33aY7aCU6', 'default-avatar.png', 1, '2024-12-21 10:34:04'),
+(6, 'b', 'b@gmail.com', '$2y$10$Lg1L/Ml0At3CpfaJV.XxY.Tm3Tr1Z4Nt1Rb2BFkAAkin/SqkaB4Ja', 'images/6768bdf9d3fc0.jpg', 0, '2024-12-23 01:31:53'),
+(9, 'c', 'c@gmail.com', '$2y$10$QWkJcLsq3FqhUkvyr4bW6OWqb/XDvopLmxVh76XE6tyyWIiY.w0pq', 'images/67697b33e8abc.jpg', 0, '2024-12-23 14:15:35'),
+(10, 'd', 'd@gmail.com', '$2y$10$IWEo3Vp8Kl9o/pfWMd11F.iZ0YkMAkiaNA4SDffr2g.CGdhuAuDFy', 'images/default_avatar.jpg', 0, '2024-12-23 15:13:33');
 
 --
 -- Indexes for dumped tables
@@ -199,7 +200,7 @@ ALTER TABLE `rambu`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

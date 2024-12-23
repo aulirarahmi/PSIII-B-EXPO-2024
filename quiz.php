@@ -92,7 +92,7 @@ if (isset($_SESSION['score'])) {
         <!-- Tombol autentikasi -->
         <?php if ($isLoggedIn): ?>
                 <!-- Tampilkan foto profil jika sudah login -->
-                <img src="images/profile.jpg" alt="Foto Profil" class="profile-photo">
+                <img src="images/default_avatar.jpg" alt="Foto Profil" class="profile-photo">
                 <div class="user-logout">
                 <a href="logout.php" class="button">Logout</a>
                 </div>

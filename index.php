@@ -1,12 +1,20 @@
 <?php
 session_start();
+include 'includes/db.php';
 
 $isLoggedIn = isset($_SESSION['user_id']);
+$profileImage = isset($_SESSION['profile_image']) ? 
+$_SESSION['profile_image'] : 'default-profile.jpg';
+$imagePath = "images/" . $profileImage;
+if (!file_exists($imagePath)) {
+    $imagePath = "images/default_avatar.jpg"; // Fallback to default image
+}
 function loginUser($username, $password, $conn) {
-    $stmt = $conn->prepare("SELECT id, username, password, is_admin FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
+    $stmt = $conn->prepare("SELECT username, email, profile_photo FROM users WHERE id = ?");
+    $stmt->bind_param("i", $username);
     $stmt->execute();
     $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
     
     if ($row = $result->fetch_assoc()) {
         // For already hashed passwords in database
@@ -57,7 +65,8 @@ function loginUser($username, $password, $conn) {
         <!-- Tombol autentikasi -->
         <?php if ($isLoggedIn): ?>
                 <!-- Tampilkan foto profil jika sudah login -->
-                <img src="images/profile.jpg" alt="Foto Profil" class="profile-photo">
+                <img src="<?php echo htmlspecialchars($user['profile_photo']); ?>" 
+             alt="Foto Profil" class="profile-photo">
                 <div class="user-logout">
                 <a href="logout.php" class="button">Logout</a>
                 </div>
