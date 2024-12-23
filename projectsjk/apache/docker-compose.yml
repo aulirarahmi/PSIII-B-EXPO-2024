@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - C:\Users\user\OneDrive\Documents\INFORMATIKA\INFORMATIKA SMT 3\SJK SMT3\projectsjk/webfolder:/var/www/html
+      - C:\xampp\htdocs\projectsjk\webfolder:/var/www/html
     networks:
       - appsjk
 networks:
