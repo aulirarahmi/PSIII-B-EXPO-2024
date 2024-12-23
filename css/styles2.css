@@ -8,7 +8,7 @@
 /* Style untuk body */
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.6;  
 }
 
 /* Style untuk header */
@@ -22,6 +22,7 @@ body {
     width: 100%;
     top: 0;
     z-index: 1000;
+    
 }
 
 .profile-container {
@@ -41,7 +42,7 @@ body {
 
 /* Style untuk logo */
 .logo img {
-    width: 150px; /* Atur ukuran logo */
+    width: 100px; /* Atur ukuran logo */
     height: auto;
     display: block;
 }
@@ -158,6 +159,8 @@ body {
     color: white;
     cursor: pointer;
     font-size: 16px;
+    margin: 0;
+    padding: 0;
 }
 
 .auth-buttons :hover {
@@ -166,7 +169,7 @@ body {
 
 /* Style untuk bagian hero */
 .hero {
-    margin-top: 64px; /* Tinggi header */
+    margin-top: 0px; /* Tinggi header */
     height: 600px;
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('../images/background.jpg');
     background-size: cover;

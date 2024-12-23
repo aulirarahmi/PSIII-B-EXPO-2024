@@ -43,7 +43,7 @@ body {
 
 /* Style untuk logo */
 .logo img {
-    width: 150px; /* Atur ukuran logo */
+    width: 100px; /* Atur ukuran logo */
     height: auto;
     display: block;
 }
