@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 23, 2024 at 04:14 PM
+-- Generation Time: Dec 24, 2024 at 08:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -128,7 +128,17 @@ INSERT INTO `rambu` (`id`, `nama_rambu`, `tipe_rambu`, `image`, `deskripsi`) VAL
 (4, 'Rambu Belok Kanan', 'perintah', 'belok_kanan.jpg', 'Rambu ini memerintahkan pengemudi untuk belok kanan terus jalan.'),
 (5, 'Peringatan belok kanan', 'peringatan', 'peringatan_belok_kanan.jpg', 'peringatan ini menandakan akan ada belok kanan di jalan depan'),
 (6, 'Peringatan ada pekerjaan', 'peringatan', 'peringatan_pekerjaan.png\r\n', 'peringatan ada pekerjaan perbaikan jalan'),
-(7, 'Peringatan pejalan kaki', 'peringatan', 'peringatan_pejalan_kaki.jpg', 'rambu ini menandakan peringatan ada daerah pejalan kaki');
+(7, 'Peringatan pejalan kaki', 'peringatan', 'peringatan_pejalan_kaki.jpg', 'rambu ini menandakan peringatan ada daerah pejalan kaki'),
+(21, 'Peringatan Jalan Licin', 'peringatan', 'peringatan_jalan_licin.jpg', 'Menginformasikan pengendara tentang kemungkinan jalan licin, misalnya saat hujan.'),
+(22, 'Peringatan Penyempitan Jalan', 'peringatan', 'Peringatan_penyempitan_jalan.jpeg', 'Menunjukkan bahwa jalan akan menyempit di depan, baik dari satu sisi atau kedua sisi.'),
+(23, 'Peringatan Jalan Menanjak', 'peringatan', 'Peringatan_Tanjakan_Curam.jpg', 'Menginformasikan adanya tanjakan yang curam di depan.'),
+(24, 'Rambu Jalan Bergelombang', 'peringatan', 'Peringatan_jalan_bergelombang.png', 'Memberitahukan bahwa jalan di depan tidak rata atau bergelombang.'),
+(25, 'Rambu Persimpangan Jalan', 'peringatan', 'peringatan-persimpangan.png', 'Menginformasikan adanya persimpangan di depan, sehingga perlu berhati-hati.'),
+(26, 'Rambu Larangan Berhenti', 'larangan', 'larangan_stop.png', 'Melarang kendaraan berhenti, bahkan untuk waktu singkat.\r\n'),
+(27, 'Larangan Kendaraan Bermotor ', 'larangan', 'larangan-kendaraan_masuk.jpeg', 'Melarang kendaraan memasuki jalan tertentu. Kendaraan yang dilarang ditandai pada gambar kendaraan, maupun itu motor, mobil, ataupun truk.'),
+(28, 'Larangan Putar Balik', 'larangan', 'larsngan_putar_balik.jpg', 'Melarang pengendara untuk melakukan U-turn, atau putar balik.'),
+(29, 'Rambu Larangan Menyalip', 'larangan', 'larangan_menyalip.jpg', 'Kendaraan dilarang mendahului kendaraan lain.'),
+(30, 'Rambu Larangan Pejalan Kaki', 'larangan', 'larangan_pejalana_kaki.jpg', 'Melarang pejalan kaki melintasi jalan tertentu.');
 
 -- --------------------------------------------------------
 
@@ -155,7 +165,7 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `profile_photo`, `is
 (4, 'a', 'a@a', '$2y$10$LAImR3LCdTJ6.nqr3GgJLOnID1DTcUIiKPaXpkWfWGBf33aY7aCU6', 'default-avatar.png', 1, '2024-12-21 10:34:04'),
 (6, 'b', 'b@gmail.com', '$2y$10$Lg1L/Ml0At3CpfaJV.XxY.Tm3Tr1Z4Nt1Rb2BFkAAkin/SqkaB4Ja', 'images/6768bdf9d3fc0.jpg', 0, '2024-12-23 01:31:53'),
 (9, 'c', 'c@gmail.com', '$2y$10$QWkJcLsq3FqhUkvyr4bW6OWqb/XDvopLmxVh76XE6tyyWIiY.w0pq', 'images/67697b33e8abc.jpg', 0, '2024-12-23 14:15:35'),
-(10, 'd', 'd@gmail.com', '$2y$10$IWEo3Vp8Kl9o/pfWMd11F.iZ0YkMAkiaNA4SDffr2g.CGdhuAuDFy', 'images/default_avatar.jpg', 0, '2024-12-23 15:13:33');
+(10, 'd', 'd@gmail.com', '$2y$10$IWEo3Vp8Kl9o/pfWMd11F.iZ0YkMAkiaNA4SDffr2g.CGdhuAuDFy', 'images/67697fe8a3b21.jpg', 0, '2024-12-23 15:13:33');
 
 --
 -- Indexes for dumped tables
@@ -194,7 +204,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `rambu`
 --
 ALTER TABLE `rambu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `users`
