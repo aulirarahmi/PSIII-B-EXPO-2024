@@ -148,22 +148,22 @@ $user = $result->fetch_assoc();
             <div class="member">
                 <img src="images/aesthetic.jpg" alt="Aulira">
                 <h3>Aulira</h3>
-                <p>ini untuk teks ini untuk teks</p>
+                <p>Aulira Rahmi Anum  || 23523140</p>
             </div>
             <div class="member">
                 <img src="images/aesthetic.jpg" alt="Lingga">
                 <h3>Lingga</h3>
-                <p>ini untuk teks ini untuk teks</p>
+                <p>Pradipta Ryandhi Lingga Madiarta || 23523138</p>
             </div>
             <div class="member">
                 <img src="images/aesthetic.jpg" alt="Adhi">
                 <h3>Adhi</h3>
-                <p>ini untuk teks ini untuk teks</p>
+                <p>Adhiyasa Aqila Yuditama || 23523043</p>
             </div>
             <div class="member">
                 <img src="images/aesthetic.jpg" alt="Putra">
                 <h3>Putra</h3>
-                <p>ini untuk teks ini untuk teks</p>
+                <p>Muhammad Alhamdra Saputra || 23523219</p>
             </div>
         </div>
     </div>
