@@ -1,25 +1,27 @@
 <?php
 // Database connection
-$hostname = "db";
-$username = "sjkuser";
-$password = "sjkpassword";
-$database_name = "tubes";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "tubes";
+// db_connect.php
+$hostname = "localhost";
+$username = "root";  // sesuaikan dengan username database Anda
+$password = "";      // sesuaikan dengan password database Anda
+$database_name = "tubes"; // nama database Anda
 
-// MySQLi Connection
 $db = mysqli_connect($hostname, $username, $password, $database_name);
-if (!$db) {
-    die("Database connection failed: " . mysqli_connect_error());
-}
-
-// PDO Connection
 try {
-    $pdo = new PDO("mysql:host=$hostname;dbname=$database_name", $username, $password);
+    $pdo = new PDO('mysql:host=localhost;dbname=tubes', 'root', ''); // Ganti dengan kredensial Anda
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Error: " . $e->getMessage());
 }
 
-// Function to check admin access
+
+// db.php
+
+// Only define if not already defined
 if (!function_exists('checkAdminAccess')) {
     function checkAdminAccess() {
         if (session_status() === PHP_SESSION_NONE) {
@@ -32,9 +34,11 @@ if (!function_exists('checkAdminAccess')) {
     }
 }
 
-// Check connection using MySQLi (optional redundancy)
+
+
 try {
-    $conn = new mysqli($hostname, $username, $password, $database_name);
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
     if ($conn->connect_error) {
         throw new Exception("Connection failed: " . $conn->connect_error);
     }
