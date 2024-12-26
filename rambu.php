@@ -6,9 +6,12 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
 require_once 'includes/db.php';
 
-$user_id = $_SESSION['user_id'];
-$success_message = '';
-$error_message = '';
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    $user_id = null; // Or assign a default value
+}
+
 
 // Fetch current user data
 $stmt = $conn->prepare("SELECT username, email, profile_photo FROM users WHERE id = ?");
